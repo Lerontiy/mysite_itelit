@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пошук</title>
+</head>
+<body>
+    <h2>Введіть призвіще для пошуку:</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        Введіть призвіще: <input type="search" name="fam" value={{text}}>
+        <input type="submit" value="Знайти">
+    </form>
+    
+    <h3><b>{{ p }}</b></h3>
+
+    <h2>Список учнів школи:</h2>
+    <ol>
+    {% for s in students|dictsort:'name' %}
+        <li>{{ s.name }} {{ s.lastname }} - {{ s.post }}</li>
+    {% endfor %}
+    </ol>
+
+</body>
+</html>

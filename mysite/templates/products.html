@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список продуктів</title>
+</head>
+<body>
+    <h1>Список продуктів:</h1>
+    <ol>
+    {% for n, p in products.items %}
+        <li>{{ n }} - {{ p }} грн.</li>
+    {% endfor %}
+    </ol>
+    <h2>Середня ціна = {{ ser_a }} грн.</h2>
+</body>
+</html>

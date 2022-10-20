@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <style>
+        #names {
+            width: 140px;
+            text-align: left;
+        }
+        table {
+            text-align: center;
+        }
+        table, td   {
+            border: 1px solid;
+        }
+        td {
+            background-color: white;
+            width: 40px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Успішність учнів інформатики</title>
+</head>
+<body>
+    <h1>Успішність учнів з інформатики:</h1>
+    <table>
+        <tr>
+            {% for i in zagolovki %}
+                <td> <b>{{ i }}</b> </td>
+            {% endfor %}
+        </tr>
+            
+        {% for i in progress|dictsort:"name" %}
+        <tr>
+            {% for n, e in i.items %}
+                {% if forloop.first %}
+                    <td > {{ forloop.parentloop.counter }} </td>
+                    <td id="names"> {{ e|upper }} </td>
+                {% elif forloop.counter0 == 1 %}
+                    {% for q in e %}
+                        <td> {{ q }} </td>
+                    {% endfor %}
+                {% endif %}     
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

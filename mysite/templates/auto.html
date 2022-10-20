@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <title>Кращі автомобілі світу</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+</head>
+<body>
+<table width='100%' border='1' bordercolor="white" method="GET">
+    <tr>
+        <td id='logo'>
+            {{ logo }}
+        </td>
+        <td rowspan="2">
+            {% for i in foto %} 
+                <img src="{{ i.image }}" width=100%></img>
+            {% endfor %}
+            
+        </td>
+    </tr>
+    <tr>
+        <td id='menu' valign='top'>
+            {% for i in menu %} 
+                <a href="?id={{ i.number }}">{{ i.name }}</a>
+            {% endfor %}
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

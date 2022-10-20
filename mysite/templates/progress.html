@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <style>
+        .raz {
+            text-align: left;
+        }
+        td   {
+            padding-right: 20px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Успішність учнів</title>
+</head>
+<body>
+    <h1>Успішність учнів:</h1>
+    <table class="raz">
+        <tr>
+            {% for i in zagolovki %}
+                <td> <b>{{ i }}</b> </td>
+            {% endfor %}
+        </tr>
+            
+        {% for i in progress|dictsort:"name" %}
+        <tr>
+            {% for n, e in i.items %}
+                {% if forloop.first %}
+                    <td > {{ forloop.parentloop.counter }} </td>
+                    <td> {{ e|upper }} </td>
+                {% elif forloop.counter0 == 1 %}
+                    {% for q, w in e.items %}
+                        <td> {{ w }} </td>
+                    {% endfor %}
+                {% else %}
+                    <td> {{ e }} </td>
+                {% endif %}
+                
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Середній бал учнів класу = {{ sb_klas }}</h2>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <style>
+        #names {
+            width: 140px;
+            text-align: left;
+        }
+        #yellow{
+            width: 70px;
+            background-color: yellow;
+        }
+        #red{
+            background-color: red;
+        }
+        table {
+            text-align: center;
+        }
+        table, td   {
+            border: 1px solid;
+        }
+        td {
+            height: 90;
+            background-color: white;
+            width: 30px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пропуски класу:</title>
+</head>
+<body>
+    <h1>Пропуски класу</h1>
+    <table>
+        <tr>
+            {% for i in zagolovki %}
+                <td> <b>{{ i }}</b> </td>
+            {% endfor %}
+        </tr>
+            
+        {% for i in progress|dictsort:"name" %}
+        <tr>
+            {% for n, e in i.items %}
+                {% if forloop.first %}
+                    <td > {{ forloop.parentloop.counter }} </td>
+                    <td id="names"> {{ e|upper }} </td>
+                {% elif forloop.counter0 == 1 %}
+                    {% for q in e %}
+                        {% if "н" in q%}
+                            <td  id="red">{{ q }}</td>
+	                    {% elif forloop.last %}
+	                	    <td id="yellow">{{ q }}</td>
+	                    {% else %}
+	                	    <td>{{ q }}</td>		
+	                    {% endif %}
+                    {% endfor %}
+                {% endif %}     
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <h1>Кількість пропусків класу: {{ prop }}</h1>
+</body>
+</html>
